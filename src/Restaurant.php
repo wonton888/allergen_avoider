@@ -25,6 +25,25 @@
         {
             return $this->id;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO restaurants (name) VALUES ('{$this->getName()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
+            $restaurants = array();
+            foreach($returned_restaurants as $restaurant) {
+                $name = $restaurant['name'];
+                $id = $restaurant['id'];
+                $new_restaurant = new Restaurant($name, $id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
     }
 
 

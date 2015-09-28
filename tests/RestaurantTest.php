@@ -15,11 +15,10 @@
 
      class RestaurantTest extends PHPUnit_Framework_TestCase
      {
-        //  protected function tearDown()
-        //  {
-        //      Restaurant::deleteAll();
-        //
-        //  }
+         protected function tearDown()
+         {
+             Restaurant::deleteAll();
+         }
 
         function testGetRestaurantName()
         {
@@ -60,6 +59,21 @@
 
             //assert
             $this->assertEquals(1, $result);
+        }
+
+        function test_save()
+        {
+            //arrange
+            $name = "Taco Hell";
+            $id = null;
+            $test_restaurant = new Restaurant($name, $id);
+
+            //act
+            $test_restaurant->save();
+
+            //assert
+            $result = Restaurant::getAll();
+            $this->assertEquals($test_restaurant, $result[0]);
         }
      }
 
