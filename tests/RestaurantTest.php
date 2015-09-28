@@ -21,7 +21,7 @@
         //
         //  }
 
-        function testGetRestaurant()
+        function testGetRestaurantName()
         {
             //arrange
             $name = "Taco Hell";
@@ -32,6 +32,20 @@
 
             //assert
             $this->assertEquals($name, $result);
+        }
+
+        function testSetRestaurantName()
+        {
+            //arrange
+            $name = "Taco Hell";
+            $test_name = new Restaurant($name);
+
+            //act
+            $test_name->setName("Taco Hell");
+            $result = $test_name->getName();
+
+            //assert
+            $this->assertEquals("Taco Hell", $result);
         }
      }
 
