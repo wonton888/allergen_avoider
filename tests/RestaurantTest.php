@@ -38,14 +38,28 @@
         {
             //arrange
             $name = "Taco Hell";
-            $test_name = new Restaurant($name);
+            $test_restaurant = new Restaurant($name);
 
             //act
-            $test_name->setName("Taco Hell");
-            $result = $test_name->getName();
+            $test_restaurant->setName("Taco Hell");
+            $result = $test_restaurant->getName();
 
             //assert
             $this->assertEquals("Taco Hell", $result);
+        }
+
+        function testGetId()
+        {
+            //arrange
+            $id = 1;
+            $name = "Taco Hell";
+            $test_restaurant = new Restaurant($name, $id);
+
+            //act
+            $result = $test_restaurant->getId();
+
+            //assert
+            $this->assertEquals(1, $result);
         }
      }
 
