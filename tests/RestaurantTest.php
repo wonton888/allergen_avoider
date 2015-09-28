@@ -98,6 +98,26 @@
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
 
+        function test_deleteAll()
+        {
+            //arrange
+            $name = "Taco Hell";
+            $id = null;
+            $test_restaurant = new Restaurant($name, $id);
+            $test_restaurant->save();
+
+            $name2 = "Burger Queen";
+            $test_restaurant2 = new Restaurant($name2, $id);
+            $test_restaurant2->save();
+
+            //act
+            Restaurant::deleteAll();
+
+            //assert
+            $result = Restaurant::getAll();
+            $this->assertEquals([], $result);
+        }
+
 
      }
 

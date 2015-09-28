@@ -32,6 +32,8 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        // function update($new_name)
+
         static function getAll()
         {
             $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants;");
