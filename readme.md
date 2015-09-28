@@ -8,30 +8,21 @@
 
 
 ## Setup
-* Clone this repository
+_This project makes use of a PHP dependency manager. Full details and installation instructions can be found at https://getcomposer.org/_
 
-* Run the following command in the project directory
-```console
-$ composer install
-```
+_Your computer must also be set up to support PDO (PHP Data Objects) and MySQL._
 
-* Start MySQL
-```
-(To run tests with PHPUnit, create a copy of the 'allergen' database called 'allergen_test')
+_To run the application:_
 
-* Start Apache server with the following command:
-```console
-$ apachectl start
-```
-
-* Start a PHP server in the web directory
-```console
-$ php -S localhost:8000
-```
-
-* Navigate your browser to localhost:8000
-
-* Enjoy!
+* _Start your MySQL server from the root level of the project folder, being sure to adjust the port number if needed_
+* _Import the databases included in this repository in the sql/ directory, or run the following commands:_
+<pre>
+CREATE DATABASE allergens;
+USE allergens;
+CREATE TABLE restaurants (id serial PRIMARY KEY, name VARCHAR (255));
+</pre>
+* _Start your PHP server from the web/ directory within the project folder_
+* _Point your browser to your localhost server address_
 
 ## Technologies Used
 
@@ -39,7 +30,7 @@ PHP, phpMyAdmin, MySQL, PHPUnit, Silex, Twig, HTML, CSS, Bootstrap
 
 ### Legal
 
-Copyright (c) Adam Won, Julian Stewart, Will Swanson, Marcos Moncivais, Ben Pritchard
+Copyright (c) 2015 Adam Won, Julian Stewart, Will Swanson, Marcos Moncivais, Ben Pritchard
 
 This software is licensed under the MIT license.
 

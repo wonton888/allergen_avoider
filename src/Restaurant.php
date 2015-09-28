@@ -32,7 +32,6 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-        // function update($new_name)
 
         static function getAll()
         {
