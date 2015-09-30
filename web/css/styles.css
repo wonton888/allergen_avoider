@@ -1,14 +1,16 @@
 body {
-    font: normal 14px/100% "Andale Mono", AndaleMono, monospace;
+    font: normal 14px "Andale Mono", AndaleMono, monospace;
     color:#fff;
     padding: 50px;
-    width: 300px;
     margin: 0 auto;
-  background-color: #374954;
-
+    background-color: #374954;
 }
 a {
     color:#fff;
+}
+
+.jumbotron {
+    color: #6BBE92;
 }
 .dropdown dd, .dropdown dt {
     margin:0px;
