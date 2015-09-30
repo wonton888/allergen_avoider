@@ -97,6 +97,26 @@
 
         }
 
+        function test_addRestaurant()
+        {
+            //arrange
+            $name = "peanut allergy";
+            $test_allergy = new Allergen($name);
+            $test_allergy->save();
+
+            $restaurant_name = "Restaurant A";
+            $test_restaurant = new Restaurant($restaurant_name);
+            $test_restaurant->save();
+
+            //act
+            $test_allergy->addRestaurant($test_restaurant);
+            $result = $test_allergy->getRestaurants();
+
+            //assert
+            $this->assertEquals([$test_restaurant], $result);
+
+        }
+
         function test_getRestaurants()
         {
             //arrange
@@ -115,6 +135,8 @@
             $test_restaurant2->save();
 
             //act
+            $test_allergen->addRestaurant($test_restaurant);
+            $test_allergen->addRestaurant($test_restaurant2);
             $result = $test_allergen->getRestaurants();
 
             //assert

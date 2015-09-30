@@ -75,7 +75,6 @@
 
             //assert
             $result = Restaurant::getAll();
-            var_dump($result);
             $this->assertEquals($test_restaurant, $result[0]);
         }
 

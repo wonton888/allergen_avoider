@@ -28,6 +28,11 @@
             return $this->id;
         }
 
+        function addRestaurant($new_restaurant)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO restaurants_allergens (restaurant_id,  allergen_id) VALUES ({$new_restaurant->getId()}, {$this->getId()});");
+        }
+
         function getRestaurants()
         {
             $restaurants = Array();
