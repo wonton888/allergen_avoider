@@ -17,9 +17,11 @@ _To run the application:_
 * _Start your MySQL server from the root level of the project folder, being sure to adjust the port number if needed_
 * _Import the databases included in this repository in the sql/ directory, or run the following commands:_
 <pre>
-CREATE DATABASE allergens;
-USE allergens;
+CREATE DATABASE allergen_avoider;
+USE allergen_avoider;
 CREATE TABLE restaurants (id serial PRIMARY KEY, name VARCHAR (255));
+CREATE TABLE allergens (id serial PRIMARY KEY, name VARCHAR (255));
+CREATE TABLE restaurants_allergens (id serial PRIMARY KEY, restaurant_id INT, allergen_id INT);
 </pre>
 * _Start your PHP server from the web/ directory within the project folder_
 * _Point your browser to your localhost server address_
