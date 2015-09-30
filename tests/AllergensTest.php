@@ -105,7 +105,7 @@
             $test_restaurant = new Restaurant($name, $id);
             $test_restaurant->save();
 
-            $test_restaurant_id = $test_restaurant($test_restaurant->getId();
+            $test_restaurant_id = $test_restaurant->getId();
 
             $allergen_name = "peanut allergy";
             $test_allergy = new Allergen($allergen_name, $id, $test_restaurant_id);
