@@ -4,8 +4,8 @@
     * @backupStatic Attributes disabled
     */
 
-    require_once "src/Allergens.php";
-    require_once "src/Restaurants.php";
+    require_once "src/Allergen.php";
+    require_once "src/Restaurant.php";
 
     $server = 'mysql:host=localhost; dbname=allergen_avoider_test';
     $username = 'root';
@@ -100,26 +100,25 @@
         function test_getRestaurants()
         {
             //arrange
-            $name = "Restaurant A";
-            $id = null;
-            $test_restaurant = new Restaurant($name, $id);
+            $name = "peanuts";
+            $test_allergen = new Allergen($name);
+            $test_allergen->save();
+
+            $test_allergen_id = $test_allergen->getId();
+
+            $restaurant_name = "Taco Hell";
+            $test_restaurant = new Restaurant($restaurant_name, $test_allergen_id);
             $test_restaurant->save();
 
-            $test_restaurant_id = $test_restaurant($test_restaurant->getId();
-
-            $allergen_name = "peanut allergy";
-            $test_allergy = new Allergen($allergen_name, $id, $test_restaurant_id);
-            $test_allergy->save();
-
-            $allergen_name2 = "gluten allergy";
-            $test_allergy2 = new Allergen($allergen_name2, $id, $test_restaurant_id);
-            $test_allergy2->save();
+            $restaurant_name2 = "Burger Queen";
+            $test_restaurant2 = new Restaurant($restaurant_name2,  $test_allergen_id);
+            $test_restaurant2->save();
 
             //act
-            $result = $test_restaurant->getName();
+            $result = $test_allergen->getRestaurants();
 
             //assert
-            $this->assertEquals([$test_allergy, $test_allergy2], $result);
+            $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
 
 

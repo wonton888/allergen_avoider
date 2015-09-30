@@ -28,6 +28,20 @@
             return $this->id;
         }
 
+        function getRestaurants()
+        {
+            $restaurants = Array();
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurant_id FROM restaurants_allergens WHERE allergen_id = {$this->getId()};");
+            foreach($returned_restaurants as $restaurant) {
+                $name = $restaurant['name'];
+                $id = $restaurant['id'];
+                $allergen_id = $restaurant['allergen_id'];
+                $new_restaurant = new Restaurant($name, $id, $allergen_id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
+
         //Database methods
 
         function save()
