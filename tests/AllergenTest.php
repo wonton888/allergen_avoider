@@ -135,6 +135,8 @@
             $test_restaurant2->save();
 
             //act
+
+            //addRestaurant and getRestaurant are dependent on each other!
             $test_allergen->addRestaurant($test_restaurant);
             $test_allergen->addRestaurant($test_restaurant2);
             $result = $test_allergen->getRestaurants();
