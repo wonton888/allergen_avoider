@@ -5,20 +5,22 @@
     * @backupStatic Attributes disabled
     */
 
-     require_once "src/Restaurants.php";
+    require_once "src/Allergen.php";
+    require_once "src/Restaurant.php";
 
 
-     $server = 'mysql: host= localhost; dbname=allergen_avoider_test';
-     $username = 'root';
-     $password = 'root';
-     $DB = new PDO($server, $username, $password);
+    $server = 'mysql: host= localhost; dbname=allergen_avoider_test';
+    $username = 'root';
+    $password = 'root';
+    $DB = new PDO($server, $username, $password);
 
-     class RestaurantTest extends PHPUnit_Framework_TestCase
-     {
-         protected function tearDown()
-         {
-             Restaurant::deleteAll();
-         }
+    class RestaurantTest extends PHPUnit_Framework_TestCase
+    {
+        protected function tearDown()
+        {
+            Allergen::deleteAll();
+            Restaurant::deleteAll();
+        }
 
         function testGetRestaurantName()
         {
@@ -117,8 +119,5 @@
             $result = Restaurant::getAll();
             $this->assertEquals([], $result);
         }
-
-
      }
-
  ?>

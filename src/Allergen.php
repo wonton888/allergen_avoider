@@ -31,7 +31,7 @@
         function getRestaurants()
         {
             $restaurants = Array();
-            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurants WHERE allergen_id = {$this->getId()};");
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurant_id FROM restaurants_allergens WHERE allergen_id = {$this->getId()};");
             foreach($returned_restaurants as $restaurant) {
                 $name = $restaurant['name'];
                 $id = $restaurant['id'];

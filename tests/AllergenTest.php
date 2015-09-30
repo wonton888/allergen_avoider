@@ -4,8 +4,8 @@
     * @backupStatic Attributes disabled
     */
 
-    require_once "src/Allergens.php";
-    require_once "src/Restaurants.php";
+    require_once "src/Allergen.php";
+    require_once "src/Restaurant.php";
 
     $server = 'mysql:host=localhost; dbname=allergen_avoider_test';
     $username = 'root';
@@ -101,18 +101,17 @@
         {
             //arrange
             $name = "peanuts";
-            $id = null;
-            $test_allergen = new Allergen($name, $id);
+            $test_allergen = new Allergen($name);
             $test_allergen->save();
 
             $test_allergen_id = $test_allergen->getId();
 
             $restaurant_name = "Taco Hell";
-            $test_restaurant = new Restaurant($restaurant_name, $id, $test_allergen_id);
+            $test_restaurant = new Restaurant($restaurant_name, $test_allergen_id);
             $test_restaurant->save();
 
             $restaurant_name2 = "Burger Queen";
-            $test_restaurant2 = new Allergen($restaurant_name2, $id, $test_allergen_id);
+            $test_restaurant2 = new Restaurant($restaurant_name2,  $test_allergen_id);
             $test_restaurant2->save();
 
             //act
