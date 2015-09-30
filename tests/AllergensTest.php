@@ -4,10 +4,10 @@
     * @backupStatic Attributes disabled
     */
 
-    require_once "src/Allergen.php";
-    require_once "src/Restaurant.php";
+    require_once "src/Allergens.php";
+    require_once "src/Restaurants.php";
 
-    $server = 'mysql:host=localhost; dbname=allergens_test';
+    $server = 'mysql:host=localhost; dbname=allergen_avoider_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -18,7 +18,6 @@
         {
             FoodAllergy::deleteAll();
             Restaurant::deleteAll();
-
         }
 
         function testGetAllergenName()

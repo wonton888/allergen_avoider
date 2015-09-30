@@ -5,10 +5,10 @@
     * @backupStatic Attributes disabled
     */
 
-     require_once "src/Restaurant.php";
+     require_once "src/Restaurants.php";
 
 
-     $server = 'mysql: host= localhost; dbname=allergen_test';
+     $server = 'mysql: host= localhost; dbname=allergen_avoider_test';
      $username = 'root';
      $password = 'root';
      $DB = new PDO($server, $username, $password);

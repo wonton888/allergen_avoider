@@ -32,13 +32,13 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO Food_Allergy (name) VALUES ('{$this->getName()}');");
+            $GLOBALS['DB']->exec("INSERT INTO allergens (name) VALUES ('{$this->getName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll()
         {
-            $returned_allergies = $GLOBALS['DB']->query("SELECT * FROM Food_Allergy;");
+            $returned_allergies = $GLOBALS['DB']->query("SELECT * FROM allergens;");
             //lower table name only
             $allergies = array();
             foreach($returned_allergies as $allergy){
@@ -52,7 +52,7 @@
 
         static function deleteAll()
         {
-            $GLOBALS['DB']->exec("DELETE FROM Food_Allergy;");
+            $GLOBALS['DB']->exec("DELETE FROM allergens;");
         }
 
 
