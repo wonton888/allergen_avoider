@@ -16,7 +16,7 @@
     {
         protected function tearDown()
         {
-            FoodAllergy::deleteAll();
+            Allergen::deleteAll();
             Restaurant::deleteAll();
         }
 
@@ -24,7 +24,7 @@
         {
             //arrange
             $name = "peanut allergy";
-            $test_allergy = new FoodAllergy($name);
+            $test_allergy = new Allergen($name);
 
             //act
             $result = $test_allergy->getName();
@@ -39,7 +39,7 @@
         {
             //arrange
             $name = "peanut allergy";
-            $test_allergy = new FoodAllergy($name);
+            $test_allergy = new Allergen($name);
 
             //act
             $test_allergy->setName("peanut allergy");
@@ -54,7 +54,7 @@
             //arrange
             $id = 1;
             $name = "gluten allergy";
-            $test_allergy = new FoodAllergy($name, $id);
+            $test_allergy = new Allergen($name, $id);
 
             //act
             $result = $test_allergy->getId();
@@ -67,11 +67,11 @@
         {
             //arrange
             $name = "gluten allergy";
-            $test_allergy = new FoodAllergy($name);
+            $test_allergy = new Allergen($name);
             $test_allergy->save();
 
             //act
-            $result = FoodAllergy::getAll();
+            $result = Allergen::getAll();
 
             //assert
             $this->assertEquals($test_allergy, $result[0]);
@@ -82,19 +82,44 @@
             //arrange
             $name = "peanut allergy";
             $id = null;
-            $test_allergy = new FoodAllergy($name, $id);
+            $test_allergy = new Allergen($name, $id);
             $test_allergy->save();
 
             $name2 = "gluten allergy";
-            $test_allergy2 = new FoodAllergy($name2, $id);
+            $test_allergy2 = new Allergen($name2, $id);
             $test_allergy2->save();
 
             //act
-            $result = FoodAllergy::getAll();
+            $result = Allergen::getAll();
 
             //assert
             $this->assertEquals([$test_allergy, $test_allergy2], $result);
 
+        }
+
+        function test_getRestaurants()
+        {
+            //arrange
+            $name = "Restaurant A";
+            $id = null;
+            $test_restaurant = new Restaurant($name, $id);
+            $test_restaurant->save();
+
+            $test_restaurant_id = $test_restaurant($test_restaurant->getId();
+
+            $allergen_name = "peanut allergy";
+            $test_allergy = new Allergen($allergen_name, $id, $test_restaurant_id);
+            $test_allergy->save();
+
+            $allergen_name2 = "gluten allergy";
+            $test_allergy2 = new Allergen($allergen_name2, $id, $test_restaurant_id);
+            $test_allergy2->save();
+
+            //act
+            $result = $test_restaurant->getName();
+
+            //assert
+            $this->assertEquals([$test_allergy, $test_allergy2], $result);
         }
 
 

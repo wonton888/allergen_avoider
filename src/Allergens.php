@@ -1,6 +1,6 @@
 <?php
 
-    class FoodAllergy
+    class Allergen
     {
         private $name;
         private $id;
@@ -44,7 +44,7 @@
             foreach($returned_allergies as $allergy){
                 $name = $allergy['name'];
                 $id = $allergy['id'];
-                $new_allergy = new FoodAllergy($name, $id);
+                $new_allergy = new Allergen($name, $id);
                 array_push($allergies, $new_allergy);
             }
             return $allergies;
