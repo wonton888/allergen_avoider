@@ -21,8 +21,13 @@
         'twig.path' => __DIR__.'/../views'
     ));
 
-    $app->get('/', function() use ($app){
+    $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', array('allergens' => Allergen::getAll()));
+    });
+
+    $app->post('/allergens', function() use ($app) {
+        $filtered_allergen_ids = $_POST["allergen_ids"];
+        return $app['twig']->render('results.html.twig', array('filtered_allergen_ids' => $filtered_allergen_ids));
     });
 
     return $app;
