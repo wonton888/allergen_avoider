@@ -75,6 +75,7 @@
 
             //assert
             $result = Restaurant::getAll();
+            var_dump($result);
             $this->assertEquals($test_restaurant, $result[0]);
         }
 
@@ -95,8 +96,8 @@
             $result = Restaurant::getAll();
 
 
+
             //assert
-            $result = Restaurant::getAll();
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
 

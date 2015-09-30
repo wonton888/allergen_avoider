@@ -31,12 +31,15 @@
         function getRestaurants()
         {
             $restaurants = Array();
-            $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurant_id FROM restaurants_allergens WHERE allergen_id = {$this->getId()};");
+            $id = null;
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM allergens
+                            JOIN restaurants_allergens ON (allergens.id = restaurants_allergens.allergen_id)
+                            JOIN restaurants ON (restaurants_allergens.restaurant_id = restaurants.id)
+                            WHERE allergens.id = {$this->getId()};");
             foreach($returned_restaurants as $restaurant) {
                 $name = $restaurant['name'];
                 $id = $restaurant['id'];
-                $allergen_id = $restaurant['allergen_id'];
-                $new_restaurant = new Restaurant($name, $id, $allergen_id);
+                $new_restaurant = new Restaurant($name, $id);
                 array_push($restaurants, $new_restaurant);
             }
             return $restaurants;

@@ -33,7 +33,7 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO restaurants (name, allergen_id) VALUES ('{$this->getName()}');");
+            $GLOBALS['DB']->exec("INSERT INTO restaurants (name) VALUES ('{$this->getName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -45,8 +45,7 @@
             foreach($returned_restaurants as $restaurant) {
                 $name = $restaurant['name'];
                 $id = $restaurant['id'];
-                $allergen_id = $restaurant['allergen_id'];
-                $new_restaurant = new Restaurant($name, $id, $allergen_id);
+                $new_restaurant = new Restaurant($name, $id);
                 array_push($restaurants, $new_restaurant);
             }
             return $restaurants;

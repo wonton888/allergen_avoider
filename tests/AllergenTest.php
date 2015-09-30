@@ -107,11 +107,11 @@
             $test_allergen_id = $test_allergen->getId();
 
             $restaurant_name = "Taco Hell";
-            $test_restaurant = new Restaurant($restaurant_name, $test_allergen_id);
+            $test_restaurant = new Restaurant($restaurant_name);
             $test_restaurant->save();
 
             $restaurant_name2 = "Burger Queen";
-            $test_restaurant2 = new Restaurant($restaurant_name2,  $test_allergen_id);
+            $test_restaurant2 = new Restaurant($restaurant_name2);
             $test_restaurant2->save();
 
             //act
