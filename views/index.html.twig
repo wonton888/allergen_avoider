@@ -5,30 +5,30 @@
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8">
         <script src="js/prefixfree.min.js"></script>
-        <title>Allergen Avoider</title>
+        <title>Option Avoider</title>
     </head>
     <body>
         <div class="container">
             <div class="jumbotron">
-                <h1>Allergen Avoider</h1>
-                <h3>Select allergens to avoid below for a listing of suitable restaurants</h3>
+                <h1>Option Avoider</h1>
+                <h3>Select options to avoid below for a listing of suitable restaurants</h3>
             </div>
             <dl class="dropdown">
                 <dt>
                 <a href="#">
-                  <span class="hida">Click to select allergens to avoid</span>
+                  <span class="hida">Click to select options to avoid</span>
                   <p class="multiSel"></p>
                 </a>
                 </dt>
 
                 <dd>
                     <div class="mutliSelect">
-                        <form action="/allergens" method="post">
+                        <form action="/options" method="post">
                             <ul>
-                                {% for allergen in allergens %}
+                                {% for option in options %}
                                 <li>
-                                    <input type="checkbox" name="allergen_ids[]" value="{{ allergen.getId }}"/>
-                                    {{ allergen.getName }}
+                                    <input type="checkbox" name="option_ids[]" value="{{ option.getId }}"/>
+                                    {{ option.getName }}
                                 </li>
                                 {% endfor %}
                             </ul>

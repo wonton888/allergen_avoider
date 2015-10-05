@@ -1,6 +1,6 @@
 <?php
 
-    class Allergen
+    class Option
     {
         private $name;
         private $id;
@@ -30,17 +30,17 @@
 
         function addRestaurant($new_restaurant)
         {
-            $GLOBALS['DB']->exec("INSERT INTO restaurants_allergens (restaurant_id,  allergen_id) VALUES ({$new_restaurant->getId()}, {$this->getId()});");
+            $GLOBALS['DB']->exec("INSERT INTO restaurants_options (restaurant_id,  option_id) VALUES ({$new_restaurant->getId()}, {$this->getId()});");
         }
 
         function getRestaurants()
         {
             $restaurants = Array();
             $id = null;
-            $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM allergens
-                            JOIN restaurants_allergens ON (allergens.id = restaurants_allergens.allergen_id)
-                            JOIN restaurants ON (restaurants_allergens.restaurant_id = restaurants.id)
-                            WHERE allergens.id = {$this->getId()};");
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM options
+                            JOIN restaurants_options ON (options.id = restaurants_options.option_id)
+                            JOIN restaurants ON (restaurants_options.restaurant_id = restaurants.id)
+                            WHERE options.id = {$this->getId()};");
             foreach($returned_restaurants as $restaurant) {
                 $name = $restaurant['name'];
                 $id = $restaurant['id'];
@@ -54,19 +54,19 @@
 
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO allergens (name) VALUES ('{$this->getName()}');");
+            $GLOBALS['DB']->exec("INSERT INTO options (name) VALUES ('{$this->getName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll()
         {
-            $returned_allergies = $GLOBALS['DB']->query("SELECT * FROM allergens;");
+            $returned_allergies = $GLOBALS['DB']->query("SELECT * FROM options;");
             //lower table name only
             $allergies = array();
             foreach($returned_allergies as $allergy){
                 $name = $allergy['name'];
                 $id = $allergy['id'];
-                $new_allergy = new Allergen($name, $id);
+                $new_allergy = new Option($name, $id);
                 array_push($allergies, $new_allergy);
             }
             return $allergies;
@@ -74,7 +74,7 @@
 
         static function deleteAll()
         {
-            $GLOBALS['DB']->exec("DELETE FROM allergens;");
+            $GLOBALS['DB']->exec("DELETE FROM options;");
         }
 
 

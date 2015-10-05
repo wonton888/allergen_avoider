@@ -1,6 +1,6 @@
-# Allergen Avoider
+# Option Avoider
 
-##### Allergen Avoider using MySQL join table, 9/28/2015
+##### Option Avoider using MySQL join table, 9/28/2015
 
 #### By Adam Won, Julian Stewart, Will Swanson, Marcos Moncivais, Ben Pritchard
 
@@ -17,11 +17,11 @@ _To run the application:_
 * _Start your MySQL server from the root level of the project folder, being sure to adjust the port number if needed_
 * _Import the databases included in this repository in the sql/ directory, or run the following commands:_
 <pre>
-CREATE DATABASE allergen_avoider;
-USE allergen_avoider;
+CREATE DATABASE option_avoider;
+USE option_avoider;
 CREATE TABLE restaurants (id serial PRIMARY KEY, name VARCHAR (255));
-CREATE TABLE allergens (id serial PRIMARY KEY, name VARCHAR (255));
-CREATE TABLE restaurants_allergens (id serial PRIMARY KEY, restaurant_id INT, allergen_id INT);
+CREATE TABLE options (id serial PRIMARY KEY, name VARCHAR (255));
+CREATE TABLE restaurants_options (id serial PRIMARY KEY, restaurant_id INT, option_id INT);
 </pre>
 * _Start your PHP server from the web/ directory within the project folder_
 * _Point your browser to your localhost server address_

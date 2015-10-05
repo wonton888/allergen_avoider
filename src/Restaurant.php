@@ -26,9 +26,9 @@
             return $this->id;
         }
 
-        function getAllergenId()
+        function getOptionId()
         {
-            return $this->allergen_id;
+            return $this->option_id;
         }
 
         function save()

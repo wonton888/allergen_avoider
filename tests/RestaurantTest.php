@@ -5,7 +5,7 @@
     * @backupStatic Attributes disabled
     */
 
-    require_once "src/Allergen.php";
+    require_once "src/Option.php";
     require_once "src/Restaurant.php";
 
 
@@ -18,7 +18,7 @@
     {
         protected function tearDown()
         {
-            Allergen::deleteAll();
+            Option::deleteAll();
             Restaurant::deleteAll();
         }
 
