@@ -37,6 +37,24 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function addOption($option)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO restaurants_options (restaurant_id, option_id) VALUES ({$this->getId()}, {$option->getId()});");
+        }
+
+        function getOptions()
+        {
+            $returned_options = $GLOBALS['DB']->query("SELECT options.* FROM restaurants JOIN restaurants_options ON (restaurants.id = restaurants_options.restaurant_id) JOIN options ON (restaurants_options.option_id = options.id) WHERE restaurants.id = {$this->getId()};");
+            $options =  array();
+            foreach ($returned_options as $option){
+                $name = $option['name'];
+                $id = $option['id'];
+                $new_option = new Option ($name, $id);
+                array_push($options, $new_option);
+            }
+            return $options;
+        }
+
 
         static function getAll()
         {

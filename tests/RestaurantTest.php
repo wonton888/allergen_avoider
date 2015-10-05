@@ -119,5 +119,55 @@
             $result = Restaurant::getAll();
             $this->assertEquals([], $result);
         }
+
+        function test_getOptionsAndAddOptions()
+        {
+            // Arrange
+            $restaurant_name = "Burger Queen";
+            $test_restaurant = new Restaurant($restaurant_name);
+            $test_restaurant->save();
+
+            $option_name = "Shellfish-free";
+            $test_option = new Option($option_name);
+            $test_option->save();
+
+            $option_name2 = "Gasoline-free";
+            $test_option2 = new Option($option_name2);
+            $test_option2->save();
+
+            // Act
+            $test_restaurant->addOption($test_option);
+            $test_restaurant->addOption($test_option2);
+            $result = $test_restaurant->getOptions();
+
+            // Assert
+            $this->assertEquals([$test_option, $test_option2], $result);
+
+
+        }
+
+        // function test_suitableRestaurants()
+        // {
+        //     // arrange
+        //     $restaurant_name = "Taco Hell";
+        //     $test_restaurant = new Restaurant($restaurant_name);
+        //     $test_restaurant->save();
+        //
+        //     $restaurant_name2 = "Burger Queen";
+        //     $test_restaurant2 = new Restaurant($restaurant_name2);
+        //     $test_restaurant2->save();
+        //
+        //     $option_name = "Shellfish-free";
+        //     $test_option = new Option($option_name);
+        //     $test_option->save();
+        //
+        //     $option_name2 = "Gasoline-free";
+        //     $test_option2 = new Option($option_name2);
+        //     $test_option2->save();
+        //
+        //
+        //
+        // }
+
      }
  ?>
