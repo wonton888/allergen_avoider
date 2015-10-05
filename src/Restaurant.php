@@ -73,6 +73,44 @@
         {
             $GLOBALS['DB']->exec("DELETE FROM restaurants;");
         }
+
+        static function suitableRestaurants($option_ids)
+        {
+            // $all_options_restaurants is an array of arrays containing returned restaurant objects based off of each of the $option_ids
+            $all_options_restaurants = array();
+            $restaurants = array();
+            foreach($option_ids as $option_id) {
+                $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM options JOIN restaurants_options ON (options.id = restaurants_options.option_id) JOIN restaurants ON (restaurants_options.restaurant_id = restaurants.id) WHERE options.id = {$option_id};");
+                foreach($returned_restaurants as $restaurant) {
+                    $name = $restaurant['name'];
+                    $id = $restaurant['id'];
+                    $new_restaurant = new Restaurant($name, $id);
+                    array_push($restaurants, $new_restaurant);
+                }
+
+                array_push($all_options_restaurants, $restaurants);
+            }
+
+            // generate $search_array_with_duplicates that includes all values of the $returned_restaurants arrays
+            $search_array_with_duplicates = array();
+            foreach($all_options_restaurants as $returned_restaurants) {
+                foreach($returned_restaurants as $restaurant) {
+                    array_push($search_array_with_duplicates, $restaurant->getId());
+                }
+            }
+
+            // count duplicates in $search_array_with_duplicates for values equal to the number of elements in the $option_ids array
+            $suitable_restaurants = array();
+            $options_count = count($option_ids);
+            $counted_duplicates = array_count_values($search_array_with_duplicates);
+            foreach($counted_duplicates as $restaurant_id => $count) {
+                if ($options_count == $count) {
+                    $restaurant = Restaurant::find($restaurant_id);
+                    array_push($suitable_restaurants, $restaurant);
+                }
+            }
+            return $suitable_restaurants;
+        }
     }
 
 

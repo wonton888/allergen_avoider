@@ -146,28 +146,43 @@
 
         }
 
-        // function test_suitableRestaurants()
-        // {
-        //     // arrange
-        //     $restaurant_name = "Taco Hell";
-        //     $test_restaurant = new Restaurant($restaurant_name);
-        //     $test_restaurant->save();
-        //
-        //     $restaurant_name2 = "Burger Queen";
-        //     $test_restaurant2 = new Restaurant($restaurant_name2);
-        //     $test_restaurant2->save();
-        //
-        //     $option_name = "Shellfish-free";
-        //     $test_option = new Option($option_name);
-        //     $test_option->save();
-        //
-        //     $option_name2 = "Gasoline-free";
-        //     $test_option2 = new Option($option_name2);
-        //     $test_option2->save();
-        //
-        //
-        //
-        // }
+        function test_suitableRestaurants()
+        {
+            // arrange
+            $restaurant_name = "Taco Hell";
+            $test_restaurant = new Restaurant($restaurant_name);
+            $test_restaurant->save();
+
+            $restaurant_name2 = "Burger Queen";
+            $test_restaurant2 = new Restaurant($restaurant_name2);
+            $test_restaurant2->save();
+
+            $option_name = "Shellfish-free";
+            $test_option = new Option($option_name);
+            $test_option->save();
+
+            $option_name2 = "Gasoline-free";
+            $test_option2 = new Option($option_name2);
+            $test_option2->save();
+
+            $option_name3 = "Soy-free";
+            $test_option3 = new Option($option_name3);
+            $test_option3->save();
+
+            // act
+            $test_restaurant->addOption($test_option2);
+            $test_restaurant->addOption($test_option3);
+            $test_restaurant2->addOption($test_option);
+            $test_restaurant2->addOption($test_option2);
+            $test_restaurant2->addOption($test_option3);
+            $option_ids = array();
+            array_push($option_ids, $test_option->getId());
+            array_push($option_ids, $test_option3->getId());
+            $result = Restaurant::suitableRestaurants($option_ids);
+
+            // assert
+            $this->assertEquals([$test_restaurant2], $result);
+        }
 
      }
  ?>
