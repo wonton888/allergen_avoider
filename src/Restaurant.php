@@ -26,6 +26,11 @@
             return $this->id;
         }
 
+        function getAllergenId()
+        {
+            return $this->allergen_id;
+        }
+
         function save()
         {
             $GLOBALS['DB']->exec("INSERT INTO restaurants (name) VALUES ('{$this->getName()}');");

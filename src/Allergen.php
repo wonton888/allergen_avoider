@@ -28,6 +28,28 @@
             return $this->id;
         }
 
+        function addRestaurant($new_restaurant)
+        {
+            $GLOBALS['DB']->exec("INSERT INTO restaurants_allergens (restaurant_id,  allergen_id) VALUES ({$new_restaurant->getId()}, {$this->getId()});");
+        }
+
+        function getRestaurants()
+        {
+            $restaurants = Array();
+            $id = null;
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM allergens
+                            JOIN restaurants_allergens ON (allergens.id = restaurants_allergens.allergen_id)
+                            JOIN restaurants ON (restaurants_allergens.restaurant_id = restaurants.id)
+                            WHERE allergens.id = {$this->getId()};");
+            foreach($returned_restaurants as $restaurant) {
+                $name = $restaurant['name'];
+                $id = $restaurant['id'];
+                $new_restaurant = new Restaurant($name, $id);
+                array_push($restaurants, $new_restaurant);
+            }
+            return $restaurants;
+        }
+
         //Database methods
 
         function save()
