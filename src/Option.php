@@ -58,6 +58,18 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        static function find($option_id)
+        {
+            $found_option = null;
+            $options = Option::getAll();
+            foreach ($options as $option) {
+                if ($option->getId() == $option_id) {
+                    $found_option = $option;
+                }
+            }
+            return $found_option;
+        }
+
         static function getAll()
         {
             $returned_allergies = $GLOBALS['DB']->query("SELECT * FROM options;");
@@ -77,7 +89,14 @@
             $GLOBALS['DB']->exec("DELETE FROM options;");
         }
 
-
+        static function getObjects($option_ids)
+        {
+            $options = array();
+            foreach($option_ids as $option_id) {
+                array_push($options, Option::find($option_id));
+            }
+            return $options;
+        }
 
 
     }

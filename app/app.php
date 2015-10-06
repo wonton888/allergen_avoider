@@ -27,8 +27,9 @@
 
     $app->post('/options', function() use ($app) {
         $suitable_option_ids = $_POST["option_ids"];
-        // $suitable_restaurants = Restaurant::suitableRestaurants($suitable_option_ids);
-        return $app['twig']->render('results.html.twig', array('filtered_option_ids' => $suitable_option_ids));
+        $options = Option::getObjects($suitable_option_ids);
+        $suitable_restaurants = Restaurant::suitableRestaurants($suitable_option_ids);
+        return $app['twig']->render('results.html.twig', array('suitable_restaurants' => $suitable_restaurants, 'options' => $options));
     });
 
     return $app;

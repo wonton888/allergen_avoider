@@ -77,6 +77,24 @@
             $this->assertEquals($test_allergy, $result[0]);
         }
 
+        function test_find()
+        {
+            //arrange
+            $name = "Peanut-free";
+            $test_allergy = new Option($name);
+            $test_allergy->save();
+
+            $name2 = "Gluten-free";
+            $test_allergy2 = new Option($name2);
+            $test_allergy2->save();
+
+            //act
+            $result = Option::find($test_allergy2->getId());
+
+            //assert
+            $this->assertEquals($test_allergy2, $result);
+        }
+
         function test_getAll()
         {
             //arrange
@@ -91,6 +109,26 @@
 
             //act
             $result = Option::getAll();
+
+            //assert
+            $this->assertEquals([$test_allergy, $test_allergy2], $result);
+        }
+
+        function test_getObjects()
+        {
+            //arrange
+            $name = "Peanut-free";
+            $test_allergy = new Option($name);
+            $test_allergy->save();
+
+            $name2 = "Gluten-free";
+            $test_allergy2 = new Option($name2);
+            $test_allergy2->save();
+
+            //act
+            $option_ids = array();
+            array_push($option_ids, $test_allergy->getId(), $test_allergy2->getId());
+            $result = Option::getObjects($option_ids);
 
             //assert
             $this->assertEquals([$test_allergy, $test_allergy2], $result);
