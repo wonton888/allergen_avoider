@@ -1,0 +1,32 @@
+peanut
+water
+lactose
+gluten
+soy
+eggs
+shellfish
+gasoline
+
+
+Restaurant Options:
+
+burgerville: gluten-free, peanut-free, vegan
+chipotle: soy-free, eggs-free, shellfish-free
+Just Thai:
+Aybla Mediteranean Grill
+Saigon Kitchen
+Boolkogi Korean BBQ
+La Jarochita
+Spoons Cafe
+Mr. Taco
+Thai Sky
+Philly Cheese Steaks
+Khob Khun Thai Food
+Real Taste of India
+
+
+INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '7', '10'), (NULL, '7', '11');
+INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '8', '11'), (NULL, '8', 3);
+INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '9', '11'), (NULL, '9', '8'), (NULL, '9', '10');
+INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '13', '11'), (NULL, '13', '10');
+INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '16', '11'), (NULL, '16', '10'), (NULL, '16', '8');

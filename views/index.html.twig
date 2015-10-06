@@ -23,12 +23,12 @@
 
                 <dd>
                     <div class="mutliSelect">
-                        <form action="/allergens" method="post">
+                        <form action="/options" method="post">
                             <ul>
-                                {% for allergen in allergens %}
+                                {% for option in options %}
                                 <li>
-                                    <input type="checkbox" name="allergen_ids[]" value="{{ allergen.getId }}"/>
-                                    {{ allergen.getName }}
+                                    <input type="checkbox" name="option_ids[]" value="{{ option.getId }}"/>
+                                    {{ option.getName }}
                                 </li>
                                 {% endfor %}
                             </ul>

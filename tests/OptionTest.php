@@ -4,27 +4,27 @@
     * @backupStatic Attributes disabled
     */
 
-    require_once "src/Allergen.php";
+    require_once "src/Option.php";
     require_once "src/Restaurant.php";
 
-    $server = 'mysql:host=localhost; dbname=allergen_avoider_test';
+    $server = 'mysql:host=localhost:8889; dbname=allergen_avoider_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
-    class AllergenTest extends PHPUnit_Framework_TestCase
+    class OptionTest extends PHPUnit_Framework_TestCase
     {
         protected function tearDown()
         {
-            Allergen::deleteAll();
+            Option::deleteAll();
             Restaurant::deleteAll();
         }
 
-        function testGetAllergenName()
+        function testGetOptionName()
         {
             //arrange
             $name = "peanut allergy";
-            $test_allergy = new Allergen($name);
+            $test_allergy = new Option($name);
 
             //act
             $result = $test_allergy->getName();
@@ -35,11 +35,11 @@
 
         }
 
-        function testSetAllergenName()
+        function testSetOptionName()
         {
             //arrange
             $name = "peanut allergy";
-            $test_allergy = new Allergen($name);
+            $test_allergy = new Option($name);
 
             //act
             $test_allergy->setName("peanut allergy");
@@ -54,7 +54,7 @@
             //arrange
             $id = 1;
             $name = "gluten allergy";
-            $test_allergy = new Allergen($name, $id);
+            $test_allergy = new Option($name, $id);
 
             //act
             $result = $test_allergy->getId();
@@ -67,14 +67,32 @@
         {
             //arrange
             $name = "gluten allergy";
-            $test_allergy = new Allergen($name);
+            $test_allergy = new Option($name);
             $test_allergy->save();
 
             //act
-            $result = Allergen::getAll();
+            $result = Option::getAll();
 
             //assert
             $this->assertEquals($test_allergy, $result[0]);
+        }
+
+        function test_find()
+        {
+            //arrange
+            $name = "Peanut-free";
+            $test_allergy = new Option($name);
+            $test_allergy->save();
+
+            $name2 = "Gluten-free";
+            $test_allergy2 = new Option($name2);
+            $test_allergy2->save();
+
+            //act
+            $result = Option::find($test_allergy2->getId());
+
+            //assert
+            $this->assertEquals($test_allergy2, $result);
         }
 
         function test_getAll()
@@ -82,15 +100,35 @@
             //arrange
             $name = "peanut allergy";
             $id = null;
-            $test_allergy = new Allergen($name, $id);
+            $test_allergy = new Option($name, $id);
             $test_allergy->save();
 
             $name2 = "gluten allergy";
-            $test_allergy2 = new Allergen($name2, $id);
+            $test_allergy2 = new Option($name2, $id);
             $test_allergy2->save();
 
             //act
-            $result = Allergen::getAll();
+            $result = Option::getAll();
+
+            //assert
+            $this->assertEquals([$test_allergy, $test_allergy2], $result);
+        }
+
+        function test_getObjects()
+        {
+            //arrange
+            $name = "Peanut-free";
+            $test_allergy = new Option($name);
+            $test_allergy->save();
+
+            $name2 = "Gluten-free";
+            $test_allergy2 = new Option($name2);
+            $test_allergy2->save();
+
+            //act
+            $option_ids = array();
+            array_push($option_ids, $test_allergy->getId(), $test_allergy2->getId());
+            $result = Option::getObjects($option_ids);
 
             //assert
             $this->assertEquals([$test_allergy, $test_allergy2], $result);
@@ -101,7 +139,7 @@
         {
             //arrange
             $name = "peanut allergy";
-            $test_allergy = new Allergen($name);
+            $test_allergy = new Option($name);
             $test_allergy->save();
 
             $restaurant_name = "Restaurant A";
@@ -121,10 +159,10 @@
         {
             //arrange
             $name = "peanuts";
-            $test_allergen = new Allergen($name);
-            $test_allergen->save();
+            $test_option = new Option($name);
+            $test_option->save();
 
-            $test_allergen_id = $test_allergen->getId();
+            $test_option_id = $test_option->getId();
 
             $restaurant_name = "Taco Hell";
             $test_restaurant = new Restaurant($restaurant_name);
@@ -137,9 +175,9 @@
             //act
 
             //addRestaurant and getRestaurant are dependent on each other!
-            $test_allergen->addRestaurant($test_restaurant);
-            $test_allergen->addRestaurant($test_restaurant2);
-            $result = $test_allergen->getRestaurants();
+            $test_option->addRestaurant($test_restaurant);
+            $test_option->addRestaurant($test_restaurant2);
+            $result = $test_option->getRestaurants();
 
             //assert
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);

@@ -1,11 +1,27 @@
 <html>
     <head>
-        <title>Allergen Avoider</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8">
+        <title>Option Avoider</title>
     </head>
     <body>
-        <h1>Here are the allergens you chose to avoid:</h1>
-        {% for allergen_id in filtered_allergen_ids %}
-            <h3>{{ allergen_id }}</h3>
-        {% endfor %}
+        <h1>Results:</h1>
+        <h3>Chosen menu options:</h3>
+        <ul>
+            {% for option in options %}
+                <li>{{ option.getName }}</li>
+            {% endfor %}
+        </ul>
+        <br>
+        {% if suitable_restaurants is not empty %}
+            <h3>Restaurants:</h3>
+            <ul>
+            {% for restaurant in suitable_restaurants %}
+                <li>{{ restaurant.getName }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <h3>Unfortunately, there are no restaurants that meet your search criteria.</h3>
+        {% endif %}
     </body>
 </html>
