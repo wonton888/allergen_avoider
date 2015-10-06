@@ -26,7 +26,7 @@ Real Taste of India
 
 
 INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '7', '10'), (NULL, '7', '11');
-INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '8', '11'), (NULL, '8', NULL);
+INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '8', '11'), (NULL, '8', 3);
 INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '9', '11'), (NULL, '9', '8'), (NULL, '9', '10');
 INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '13', '11'), (NULL, '13', '10');
 INSERT INTO `allergen_avoider`.`restaurants_options` (`id`, `restaurant_id`, `option_id`) VALUES (NULL, '16', '11'), (NULL, '16', '10'), (NULL, '16', '8');

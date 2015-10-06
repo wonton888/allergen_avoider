@@ -7,7 +7,7 @@
     require_once "src/Option.php";
     require_once "src/Restaurant.php";
 
-    $server = 'mysql:host=localhost; dbname=allergen_avoider_test';
+    $server = 'mysql:host=localhost:8889; dbname=allergen_avoider_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);

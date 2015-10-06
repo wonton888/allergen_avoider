@@ -55,6 +55,18 @@
             return $options;
         }
 
+        static function find($restaurant_id)
+        {
+            $found_restaurant = null;
+            $restaurants = Restaurant::getAll();
+            foreach ($restaurants as $restaurant) {
+                if ($restaurant->getId() == $restaurant_id) {
+                    $found_restaurant = $restaurant;
+                }
+            }
+            return $found_restaurant;
+        }
+
 
         static function getAll()
         {
@@ -78,8 +90,8 @@
         {
             // $all_options_restaurants is an array of arrays containing returned restaurant objects based off of each of the $option_ids
             $all_options_restaurants = array();
-            $restaurants = array();
             foreach($option_ids as $option_id) {
+                $restaurants = array();
                 $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM options JOIN restaurants_options ON (options.id = restaurants_options.option_id) JOIN restaurants ON (restaurants_options.restaurant_id = restaurants.id) WHERE options.id = {$option_id};");
                 foreach($returned_restaurants as $restaurant) {
                     $name = $restaurant['name'];
@@ -87,7 +99,6 @@
                     $new_restaurant = new Restaurant($name, $id);
                     array_push($restaurants, $new_restaurant);
                 }
-
                 array_push($all_options_restaurants, $restaurants);
             }
 

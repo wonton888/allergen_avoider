@@ -12,7 +12,7 @@
     // Set Silex debug mode in $app object
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost;dbname=allergen_avoider';
+    $server = 'mysql:host=localhost:8889;dbname=allergen_avoider';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
