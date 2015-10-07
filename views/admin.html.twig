@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+        <!-- <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8"> -->
+        <title>Option Avoider</title>
+    </head>
+    <body>
+        <ul>
+            {% for restaurant in restaurants %}
+                <li>{{ restaurant.getName }}</li>
+            {% endfor %}
+        </ul>
+
+        <form action="/add_restaurants" method="post">
+            <label for="restaurant_name">Add restaurant's name</label>
+            <input id="restaurant_name" name="restaurant_name" type="text">
+            <button type="submit">Add Restaurant!</button>
+        </form>
+        <p>
+            <a href="/">Go Back</a>
+        </p>
+
+    </body>
+</html>

@@ -33,6 +33,16 @@
         return $app['twig']->render('results.html.twig', array('suitable_restaurants' => $suitable_restaurants, 'options' => $options));
     });
 
+    $app->get('/admin', function() use ($app) {
+        return $app['twig']->render('admin.html.twig', array('restaurants' => Restaurant::getAll()));
+    });
+
+    $app->post('/add_restaurants', function() use ($app){
+        $restaurant_name = new Restaurant($_POST['restaurant_name']);
+        $restaurant_name->save();
+        return $app['twig']->render('admin.html.twig', array('restaurants' => Restaurant::getAll()));
+    });
+
     return $app;
 
 ?>

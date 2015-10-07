@@ -9,6 +9,9 @@
     </head>
     <body>
         <div class="container">
+            <form action="/admin">
+                <button type="submit">Admin</button>
+            </form>
             <div class="jumbotron">
                 <h1>Allergen Avoider</h1>
                 <h3>Select allergens to avoid below for a listing of suitable restaurants</h3>
@@ -28,7 +31,6 @@
                                 {% for option in options %}
                                 <li>
                                     <input type="checkbox" name="option_names[]" value="{{ option.getName }}"/>
-                                    <!-- <input type="hidden" name="option_ids[]" value="{{ option.getId }}"/> -->
                                     {{ option.getName }}
                                 </li>
                                 {% endfor %}
