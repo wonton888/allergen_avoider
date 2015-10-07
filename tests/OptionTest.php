@@ -7,7 +7,7 @@
     require_once "src/Option.php";
     require_once "src/Restaurant.php";
 
-    $server = 'mysql:host=localhost:8889; dbname=allergen_avoider_test';
+    $server = 'mysql:host=localhost; dbname=allergen_avoider_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -183,8 +183,33 @@
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
 
+        function test_getIdsFromNames()
+        {
+            //arrange
+            $name = "peanut-free";
+            $test_option = new Option($name);
+            $test_option->save();
+
+            $name2 = "soy-free";
+            $test_option2 = new Option($name2);
+            $test_option2->save();
+
+
+
+            //act
+            $suitable_options_names = array($test_option->getName(), $test_option2->getName());
+            $result = Option::getIdsFromNames($suitable_option_names);
+
+
+
+            //assert
+            $this->assertEquals([$test_option->getId(), $test_option2->getId()], $result);
+        }
+
 
     }
+
+    // $suitable_option_ids = Option::get_ids($suitable_option_names);
 
 
 

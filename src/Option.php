@@ -98,6 +98,13 @@
             return $options;
         }
 
+        static function GetIdsFromNames()
+        {
+
+
+
+        }
+
 
     }
 

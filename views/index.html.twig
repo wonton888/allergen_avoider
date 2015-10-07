@@ -27,7 +27,8 @@
                             <ul>
                                 {% for option in options %}
                                 <li>
-                                    <input type="checkbox" name="option_ids[]" value="{{ option.getId }}"/>
+                                    <input type="checkbox" name="option_names[]" value="{{ option.getName }}"/>
+                                    <!-- <input type="hidden" name="option_ids[]" value="{{ option.getId }}"/> -->
                                     {{ option.getName }}
                                 </li>
                                 {% endfor %}

@@ -12,7 +12,7 @@
     // Set Silex debug mode in $app object
     $app['debug'] = true;
 
-    $server = 'mysql:host=localhost:8889;dbname=allergen_avoider';
+    $server = 'mysql:host=localhost;dbname=allergen_avoider';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -26,7 +26,8 @@
     });
 
     $app->post('/options', function() use ($app) {
-        $suitable_option_ids = $_POST["option_ids"];
+        $suitable_option_names = $_POST["option_names"];
+        $suitable_option_ids = Option::get_ids($suitable_option_names);
         $options = Option::getObjects($suitable_option_ids);
         $suitable_restaurants = Restaurant::suitableRestaurants($suitable_option_ids);
         return $app['twig']->render('results.html.twig', array('suitable_restaurants' => $suitable_restaurants, 'options' => $options));
