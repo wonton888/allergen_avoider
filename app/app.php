@@ -48,6 +48,12 @@
         $option_name->save();
         return $app['twig']->render('admin.html.twig', array('restaurants'=> Restaurant::getAll(), 'options' => Option::getAll()));
     });
+
+    $app->get('/restaurants/{id}', function($id) use ($app) {
+        $restaurant = Restaurant::find($id);
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant));
+    });
+
     return $app;
 
 ?>
