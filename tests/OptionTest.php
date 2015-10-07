@@ -198,8 +198,7 @@
 
             //act
             $suitable_options_names = array($test_option->getName(), $test_option2->getName());
-            $result = Option::getIdsFromNames($suitable_option_names);
-
+            $result = Option::getIdsFromNames($suitable_options_names);
 
 
             //assert

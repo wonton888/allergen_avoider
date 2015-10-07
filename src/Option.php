@@ -98,11 +98,16 @@
             return $options;
         }
 
-        static function GetIdsFromNames()
+        static function getIdsFromNames($suitable_option_names)
         {
-
-
-
+            $suitable_options_ids = array();
+            foreach($suitable_option_names as $name) {
+                $statement = $GLOBALS['DB']->query("SELECT * FROM options WHERE name = '{$name}';");
+                $returned_option = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $id = $returned_option[0]['id'];
+                array_push($suitable_options_ids, $id);
+            }
+            return $suitable_options_ids;
         }
 
 
