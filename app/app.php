@@ -34,15 +34,20 @@
     });
 
     $app->get('/admin', function() use ($app) {
-        return $app['twig']->render('admin.html.twig', array('restaurants' => Restaurant::getAll()));
+        return $app['twig']->render('admin.html.twig', array('restaurants' => Restaurant::getAll(), 'options' => Option::getAll()));
     });
 
     $app->post('/add_restaurants', function() use ($app){
         $restaurant_name = new Restaurant($_POST['restaurant_name']);
         $restaurant_name->save();
-        return $app['twig']->render('admin.html.twig', array('restaurants' => Restaurant::getAll()));
+        return $app['twig']->render('admin.html.twig', array('restaurants' => Restaurant::getAll(), 'options' => Option::getAll()));
     });
 
+    $app->post('/add_options', function() use ($app){
+        $option_name = new Option($_POST['option_name']);
+        $option_name->save();
+        return $app['twig']->render('admin.html.twig', array('restaurants'=> Restaurant::getAll(), 'options' => Option::getAll()));
+    });
     return $app;
 
 ?>

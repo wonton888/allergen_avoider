@@ -5,6 +5,8 @@
         <title>Option Avoider</title>
     </head>
     <body>
+        <h1>Admin Page</h1>
+        <h3>Restaurants:</h3>
         <ul>
             {% for restaurant in restaurants %}
                 <li>{{ restaurant.getName }}</li>
@@ -15,6 +17,20 @@
             <label for="restaurant_name">Add restaurant's name</label>
             <input id="restaurant_name" name="restaurant_name" type="text">
             <button type="submit">Add Restaurant!</button>
+        </form>
+
+        <h3>Options:</h3>
+        <ul>
+            {% for option in options %}
+                <li>{{ option.getName }}</li>
+            {% endfor %}
+
+        </ul>
+
+        <form action="/add_options" method="post">
+            <label for="option_name">Add option's name</label>
+            <input id="option_name" name="option_name" type="text">
+            <button type="submit">Add Option!</button>
         </form>
         <p>
             <a href="/">Go Back</a>
