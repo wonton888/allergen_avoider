@@ -1,18 +1,21 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/../css/restaurant.css" type="text/css">
         <!-- <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8"> -->
         <title>Option Avoider</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container box">
             <h1>{{ restaurant.getName }}</h1>
-            <ul>
+            <hr>
+            <h3>Dietary options:</h3>
+            <ul class="pink">
                 {% for option in restaurant_options %}
                     <li>{{ option.getName }}</li>
                 {% endfor %}
             </ul>
-
+            <hr>
             <h3>Add an option for this restaurant:</h3>
 
             <form action="/add_restaurant_options" method="post">
@@ -28,7 +31,7 @@
                     <button type="submit" class="btn btn-sm btn-success">Add</button>
                 </div>
             </form>
-
+            <hr>
             <form action="/admin">
                 <button type="submit" class="btn btn-primary">Back to Admin</button>
             </form>

@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+    background-image: url("images/allergywarning.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.box {
+    margin-bottom: 20px;
+    padding: 30px 15px;
+    background: #fff;
+    background: rgba(255,255,255,0.7);
+}
+
+.pink {
+    color: #FF33CC;
+}

@@ -1,40 +1,50 @@
 <html>
     <head>
+        <link rel="stylesheet" href="css/business-casual.css" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
         <!-- <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8"> -->
         <title>Option Avoider</title>
     </head>
     <body>
-        <h1>Admin Page</h1>
-        <h3>Restaurants:</h3>
-        <ul>
-            {% for restaurant in restaurants %}
-                <li><a href="/restaurants/{{ restaurant.getId }}">{{ restaurant.getName }}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="container">
 
-        <form action="/add_restaurants" method="post">
-            <label for="restaurant_name">Add restaurant's name</label>
-            <input id="restaurant_name" name="restaurant_name" type="text">
-            <button type="submit">Add Restaurant!</button>
-        </form>
+            <div class="white">
+                <h1>Admin Page</h1>
+            </div>
+            <div class="box">
+                <h3>Restaurants:</h3>
+                <ul>
+                    {% for restaurant in restaurants %}
+                        <li><a href="/restaurants/{{ restaurant.getId }}">{{ restaurant.getName }}</a></li>
+                    {% endfor %}
+                </ul>
 
-        <h3>Options:</h3>
-        <ul>
-            {% for option in options %}
-                <li><a href="/options/{{ option.getId }}">{{ option.getName }}</a></li>
-            {% endfor %}
+                <form action="/add_restaurants" method="post">
+                    <label for="restaurant_name">Add restaurant's name</label>
+                    <input id="restaurant_name" name="restaurant_name" type="text">
+                    <button type="submit">Add Restaurant!</button>
+                </form>
+            </div>
 
-        </ul>
+            <div class="box">
+                <h3>Options:</h3>
+                <ul>
+                    {% for option in options %}
+                        <li><a href="/options/{{ option.getId }}">{{ option.getName }}</a></li>
+                    {% endfor %}
 
-        <form action="/add_options" method="post">
-            <label for="option_name">Add option's name</label>
-            <input id="option_name" name="option_name" type="text">
-            <button type="submit">Add Option!</button>
-        </form>
-        <p>
-            <a href="/">Go Back</a>
-        </p>
+                </ul>
+
+                <form action="/add_options" method="post">
+                    <label for="option_name">Add option's name</label>
+                    <input id="option_name" name="option_name" type="text">
+                    <button type="submit">Add Option!</button>
+                </form>
+            </div>
+            <p>
+                <a href="/">Go Back</a>
+            </p>
+        </div>
 
     </body>
 </html>

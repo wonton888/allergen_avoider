@@ -178,11 +178,9 @@
         function test_getRestaurants()
         {
             //arrange
-            $name = "peanuts";
+            $name = "Peanut-free";
             $test_option = new Option($name);
             $test_option->save();
-
-            $test_option_id = $test_option->getId();
 
             $restaurant_name = "Taco Hell";
             $test_restaurant = new Restaurant($restaurant_name);

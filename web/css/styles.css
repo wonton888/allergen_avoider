@@ -3,8 +3,13 @@ body {
     color:#fff;
     padding: 50px;
     margin: 0 auto;
-    background-color: #374954;
+    /*background-color: #374954;*/
+    background-color: black;
+    background-image: url("images/restaurant.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
 a {
     color:#fff;
 }

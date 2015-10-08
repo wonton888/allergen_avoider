@@ -35,7 +35,7 @@
 
         function getRestaurants()
         {
-            $restaurants = Array();
+            $restaurants = array();
             $id = null;
             $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM options
                             JOIN restaurants_options ON (options.id = restaurants_options.option_id)
