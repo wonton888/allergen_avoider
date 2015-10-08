@@ -1,0 +1,6 @@
+SELECT id FROM options WHERE (name = "Peanut-free");
+
+
+QUESTIONS:
+
+Why doesn't the hidden delete method input field work on the restaurants info page?

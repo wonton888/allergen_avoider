@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/../css/option.css" type="text/css">
+        <title>Option Avoider</title>
+    </head>
+    <body>
+        <div class="container box">
+            <h1>{{ option.getName }}</h1>
+            <hr>
+            <ul class="pink">
+                {% for restaurant in option_restaurants %}
+                    <li>{{ restaurant.getName }}</li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <h3>Add restaurant for this option:</h3>
+
+            <form action="/add_option_restaurants" method="post">
+                <input id="option_id" name="option_id" type="hidden" value="{{ option.getId }}">
+
+                <div class="form-group">
+                    <label for="restaurant_id">Select restaurant:</label>
+                    <select id="restaurant_id" name="restaurant_id">
+                        {% for restaurant in all_restaurants %}
+                            <option value="{{ restaurant.getId }}">{{ restaurant.getName }}</option>
+                        {% endfor %}
+                    </select>
+                        <button type="submit" class="btn btn-sm btn-success">Add</button>
+                </div>
+            </form>
+            <hr>
+            <form action="/admin">
+                <button type="submit" class="btn btn-primary">Back to Admin</button>
+
+            </form>
+
+
+
+            <form action="/options/{{ option.getId }}/delete" method="post">
+                <button type="submit">Delete Option</button>
+            </form>
+        </div>
+
+    </body>
+</html>

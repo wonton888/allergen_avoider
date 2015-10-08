@@ -1,27 +1,33 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="/../css/results.css" type="text/css">
+        <!-- <link rel="stylesheet" href="css/styles.css" media="screen" title="no title" charset="utf-8"> -->
         <title>Option Avoider</title>
     </head>
     <body>
-        <h1>Results:</h1>
-        <h3>Chosen menu options:</h3>
-        <ul>
-            {% for option in options %}
-                <li>{{ option.getName }}</li>
-            {% endfor %}
-        </ul>
-        <br>
-        {% if suitable_restaurants is not empty %}
-            <h3>Restaurants:</h3>
+        <div class="container box">
+            <h1>Results:</h1>
+            <h3>Chosen menu options:</h3>
             <ul>
-            {% for restaurant in suitable_restaurants %}
-                <li>{{ restaurant.getName }}</li>
-            {% endfor %}
+                {% for option in options %}
+                    <li>{{ option.getName }}</li>
+                {% endfor %}
             </ul>
-        {% else %}
-            <h3>Unfortunately, there are no restaurants that meet your search criteria.</h3>
-        {% endif %}
+            <br>
+            {% if suitable_restaurants is not empty %}
+                <h3>Restaurants:</h3>
+                <ul>
+                {% for restaurant in suitable_restaurants %}
+                    <li>{{ restaurant.getName }}</li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <h3>Unfortunately, there are no restaurants that meet your search criteria.</h3>
+            {% endif %}
+            <p>
+                <button type="button"><a href="/">Go Home</a>  </button>
+            </p>
+        </div>
     </body>
 </html>

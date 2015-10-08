@@ -35,7 +35,7 @@
 
         function getRestaurants()
         {
-            $restaurants = Array();
+            $restaurants = array();
             $id = null;
             $returned_restaurants = $GLOBALS['DB']->query("SELECT restaurants.* FROM options
                             JOIN restaurants_options ON (options.id = restaurants_options.option_id)
@@ -56,6 +56,11 @@
         {
             $GLOBALS['DB']->exec("INSERT INTO options (name) VALUES ('{$this->getName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM options WHERE id = {$this->getId()};");
         }
 
         static function find($option_id)
@@ -96,6 +101,18 @@
                 array_push($options, Option::find($option_id));
             }
             return $options;
+        }
+
+        static function getIdsFromNames($suitable_option_names)
+        {
+            $suitable_options_ids = array();
+            foreach($suitable_option_names as $name) {
+                $statement = $GLOBALS['DB']->query("SELECT * FROM options WHERE name = '{$name}';");
+                $returned_option = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $id = $returned_option[0]['id'];
+                array_push($suitable_options_ids, $id);
+            }
+            return $suitable_options_ids;
         }
 
 

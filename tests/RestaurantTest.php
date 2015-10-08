@@ -9,7 +9,7 @@
     require_once "src/Restaurant.php";
 
 
-    $server = 'mysql:host=localhost:8889; dbname=allergen_avoider_test';
+    $server = 'mysql:host=localhost; dbname=allergen_avoider_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -72,10 +72,29 @@
 
             //act
             $test_restaurant->save();
+            $result = Restaurant::getAll();
 
             //assert
-            $result = Restaurant::getAll();
             $this->assertEquals($test_restaurant, $result[0]);
+        }
+
+        function test_delete()
+        {
+            // arrange
+            $name = "Taco Hell";
+            $test_restaurant = new Restaurant($name);
+            $test_restaurant->save();
+
+            $name2 = "Puff the Magic Dragon";
+            $test_restaurant2 = new Restaurant($name2);
+            $test_restaurant2->save();
+
+            // act
+            $test_restaurant2->delete();
+            $result = Restaurant::getAll();
+
+            // assert
+            $this->assertEquals([$test_restaurant], $result);
         }
 
         function test_find()
