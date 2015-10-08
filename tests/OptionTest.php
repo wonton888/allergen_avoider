@@ -68,13 +68,33 @@
             //arrange
             $name = "gluten allergy";
             $test_allergy = new Option($name);
-            $test_allergy->save();
 
             //act
+            $test_allergy->save();
             $result = Option::getAll();
 
             //assert
             $this->assertEquals($test_allergy, $result[0]);
+        }
+
+        function test_delete()
+        {
+            // arrange
+            $name = "Vegan";
+            $test_option = new Option($name);
+            $test_option->save();
+
+            $name2 = "Seafood-free";
+            $test_option2 = new Option($name2);
+            $test_option2->save();
+
+            // act
+            $test_option2->delete();
+            $result = Option::getAll();
+
+            // assert
+            $this->assertEquals([$test_option], $result);
+
         }
 
         function test_find()

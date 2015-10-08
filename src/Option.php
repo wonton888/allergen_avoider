@@ -58,6 +58,11 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM options WHERE id = {$this->getId()};");
+        }
+
         static function find($option_id)
         {
             $found_option = null;
