@@ -51,7 +51,22 @@
 
     $app->get('/restaurants/{id}', function($id) use ($app) {
         $restaurant = Restaurant::find($id);
-        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant));
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'options' => $restaurant->getOptions()));
+    });
+    $app->get('/options/{id}', function($id) use ($app) {
+        $option = Option::find($id);
+        return $app['twig']->render('option.html.twig', array('option' => $option, 'restaurants' => $option->getRestaurants()));
+    });
+
+    $app->post('/restaurants/{id}/delete', function($id) use ($app){
+        $restaurant = Restaurant::find($id);
+        $restaurant->delete();
+        return $app['twig']->render('admin.html.twig', array('restaurants'=> Restaurant::getAll(), 'options'=> Option::getAll()));
+    });
+    $app->post('/options/{id}/delete', function($id) use ($app){
+        $option = Option::find($id);
+        $option->delete();
+        return $app['twig']->render('admin.html.twig', array('options'=> Option::getAll(), 'restaurants'=> Restaurant::getAll()));
     });
 
     return $app;

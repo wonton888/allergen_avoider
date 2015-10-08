@@ -22,7 +22,7 @@
         <h3>Options:</h3>
         <ul>
             {% for option in options %}
-                <li>{{ option.getName }}</li>
+                <li><a href="/options/{{ option.getId }}">{{ option.getName }}</a></li>
             {% endfor %}
 
         </ul>

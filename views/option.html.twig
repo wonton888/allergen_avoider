@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
+        <title>Option Avoider</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ option.getName }}</h1>
+            <ul>
+                {% for restaurant in restaurants %}
+                    <li>{{ restaurant.getName }}</li>
+                {% endfor %}
+            </ul>
+            <form action="/options/{{ option.getId }}/delete" method="post">
+                <button type="submit">Delete Option</button>
+            </form>        
+        </div>
+
+    </body>
+</html>

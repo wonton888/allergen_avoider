@@ -7,6 +7,14 @@
     <body>
         <div class="container">
             <h1>{{ restaurant.getName }}</h1>
+            <ul>
+                {% for option in options %}
+                    <li>{{ option.getName }}</li>
+                {% endfor %}
+            </ul>
+            <form action="/restaurants/{{ restaurant.getId }}/delete" method="post">
+                <button type="submit">Delete Restaurant</button>
+            </form>
         </div>
     </body>
 </html>
