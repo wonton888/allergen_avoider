@@ -49,10 +49,18 @@
         return $app['twig']->render('admin.html.twig', array('restaurants'=> Restaurant::getAll(), 'options' => Option::getAll()));
     });
 
+    $app->post('/add_restaurant_options', function() use ($app) {
+        $restaurant = Restaurant::find($_POST['restaurant_id']);
+        $option = Option::find($_POST['option_id']);
+        $restaurant->addOption($option);
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'restaurant_options' => $restaurant->getOptions(), 'all_options' => Option::getAll()));
+    });
+
     $app->get('/restaurants/{id}', function($id) use ($app) {
         $restaurant = Restaurant::find($id);
-        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'options' => $restaurant->getOptions()));
+        return $app['twig']->render('restaurant.html.twig', array('restaurant' => $restaurant, 'restaurant_options' => $restaurant->getOptions(), 'all_options' => Option::getAll()));
     });
+
     $app->get('/options/{id}', function($id) use ($app) {
         $option = Option::find($id);
         return $app['twig']->render('option.html.twig', array('option' => $option, 'restaurants' => $option->getRestaurants()));
